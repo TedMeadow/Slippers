@@ -91,10 +91,11 @@ switch($_REQUEST['event'])
                 $user = $_REQUEST['data']['USER'];
                 $name = $user['NAME'];
                 $gender = $user['GENDER'];
-                $message = $name. ($gender == 'M'? 'взял': 'взяла'). 'звонок!';
+                $message = $name. ($gender == 'M'? 'взял': 'взяла'). "звонок!\n". date("H:i:s");
                 $result = CRestCurrent::call('imbot.command.answer', Array(
                     'COMMAND' => 'callhasmade',
-                    'MESSAGE_ID' => $command['MESSAGE_ID']
+                    'MESSAGE_ID' => $command['MESSAGE_ID'],
+                    'MESSAGE' => $message,                  
 
                 ));
             }
