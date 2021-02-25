@@ -29,6 +29,7 @@
                 <option value="onCrmDealAdd">Добавление сделки в CRM</option>
             </select> 
         </p>
+        <p>Фильтр имен сущностей:<input type="text" name="filter"></p>
         <p><?php
             echo '<input type="hidden" name="domain" value="'.htmlspecialchars($_REQUEST['auth']['domain']). '" />'. "\n";
         ?></p>

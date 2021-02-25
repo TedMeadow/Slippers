@@ -530,7 +530,7 @@
 				}
 				else
 				{
-					$path = __DIR__ . '/logs/';
+					$path = __DIR__ . '/../logs/';
 				}
 				$path .= date("Y-m-d/H") . '/';
 
