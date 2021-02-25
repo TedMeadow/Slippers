@@ -26,7 +26,7 @@
     <form action='/Bot/BotInit.php' method="post">
         <p>Активность:
             <select name="activity">
-                <option value="onCrmDealAdd">Добавление сделки в CRM</option>
+                <option value="ONCRMDEALADD">Добавление сделки в CRM</option>
             </select> 
         </p>
         <p>Фильтр имен сущностей:<input type="text" name="filter"></p>

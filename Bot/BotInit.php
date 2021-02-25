@@ -10,21 +10,31 @@ $result = CRestCurrent::call('event.bind', Array(
     'HANDLER' => $handlerBackUrl.'/Bot/BotHandler.php'
 ));
 $result = CRestCurrent::call('imbot.register',Array(
-    'CODE' => 'Slippers',
+    'CODE' => 'SlippersBot',
     'TYPE' => 'B',
     'EVENT_HANDLER' => $handlerBackUrl.'/Bot/BotHandler.php',
     'PROPERTIES' => Array(
-        'NAME' => 'NotificationBot',
+        'NAME' => 'SlippersBot',
         'COLOR' => 'PINK',
-        'EMAIL' => 'test@test.ru',
-        'PERSONAL_BIRTHDAY' => '2020-11-10',
+        'EMAIL' => 'slippersbot@gmail.com',
+        'PERSONAL_BIRTHDAY' => '2021-02-25',
         'PERSONAL_GENDER' => 'M',
         'PERSONAL_PHOTO' => base64_encode(file_get_contents(__DIR__.'/avatar.png'))
     ))
 );
 $botId = $result['result'];
-$BotConfig[$_REQUEST['auth']['domain']]['BotID'] = $botId;
-$BotConfig[$_REQUEST['auth']['domain']]['Filter'] = $_POST['filter'];
+$result = CRestCurrent::call('imbot.command.register', Array(
+    'BOT_ID' => $botId,
+    'COMMAND' => 'callhasmade',
+    'HIDDEN' => 'Y',
+    'EVENT_COMMAND_ADD' => $handlerBackUrl.'/Bot/BotHandler.php'
+));
+$commandId = $result['result'];
+$BotConfig[$_REQUEST['auth']['domain']]['botId'] = $botId;
+$BotConfig[$_REQUEST['auth']['domain']]['filter'] = $_POST['filter'];
+$BotConfig[$_REQUEST['auth']['domain']]['activity'] = $_POST['activity'];
+$BotConfig[$_REQUEST['auth']['domain']]['callhasmade'] = $commandId;
+$BotConfig[$_REQUEST['auth']['domain']]['savedMessage'] = Array();
 saveParams($BotConfig);
 
 
