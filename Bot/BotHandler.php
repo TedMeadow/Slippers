@@ -63,11 +63,9 @@ switch($_REQUEST['event'])
                 ),
                 'KEYBOARD' => array(
                     array(
-                        'TEXT' => 'Звонок',
+                        'TEXT' => 'Позвонить',
                         'COMMAND' => 'callhasmade',
-                        'COMMAND_PARAMS' =>Array(
-                            
-                        ),
+                        'COMMAND_PARAMS' => 'who',
                         'ACTION' => 'CALL',
                         'ACTION_VALUE' => $contact['PHONE'][0]['VALUE'],
                         "BG_COLOR" => "#2a4c7c",
@@ -86,6 +84,21 @@ switch($_REQUEST['event'])
         break;
     
     case 'ONIMCOMMANDADD':
+        foreach($_REQUEST['data']['COMMAND'] as $command)
+        {
+            if ($command['COMMAND'] == 'callhasmade')
+            {
+                $user = $_REQUEST['data']['USER'];
+                $name = $user['NAME'];
+                $gender = $user['GENDER'];
+                $message = $name. ($gender == 'M'? 'взял': 'взяла'). 'звонок!';
+                $result = CRestCurrent::call('imbot.command.answer', Array(
+                    'COMMAND' => 'callhasmade',
+                    'MESSAGE_ID' => $command['MESSAGE_ID']
+
+                ));
+            }
+        }
 
 
         
