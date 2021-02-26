@@ -19,7 +19,7 @@ switch($_REQUEST['event'])
         break;
     
     case 'ONCRMDEALADD':
-        $result = CRestCurrent::call('crm.deal.add', Array(
+        $result = CRestCurrent::call('crm.deal.get', Array(
             'ID' => $_REQUEST['data']['FIELDS']['ID']
         ));
         $deal = $result['result'];
