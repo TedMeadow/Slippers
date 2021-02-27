@@ -15,12 +15,12 @@
 	</div>
 	<div id="name">
 		<?php
-		#require_once (__DIR__.'/API/crestcurrent.php');
+		require_once (__DIR__.'/API/crestcurrent.php');
 
-		//$result = CRest::call('user.current');
-		#$result = CRestCurrent::call('user.current');
+		$result = CRest::call('user.current');
+	    $result = CRestCurrent::call('user.current');
 
-		#echo 'Здравствуйте, '. $result['result']['NAME'].' '.$result['result']['LAST_NAME'];
+		echo 'Здравствуйте, '. $result['result']['NAME'].' '.$result['result']['LAST_NAME'];
 		?>
 	</div>
     <form action='/Bot/BotInit.php' method="post">
